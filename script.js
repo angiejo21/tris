@@ -20,7 +20,7 @@ const player1 = {
   mark: "🤢",
   color: "#3a86ff",
 };
-const wins = [
+const winningGames = [
   ["c1", "c2", "c3"],
   ["c4", "c5", "c6"],
   ["c7", "c8", "c9"],
@@ -43,22 +43,31 @@ function randomSelection() {
 }
 
 game.addEventListener("click", (e) => {
-  if (isPlaying) {
-    const target = e.target;
+  const target = e.target.closest("td");
+  if (isPlaying && !selectedCells.includes(target.id)) {
     target.textContent = currentPlayer.mark;
     target.style.backgroundColor = currentPlayer.color;
     currentPlayer.game.push(target.id);
     selectedCells.push(target.id);
-    wins.forEach((win) => {
-      if (win.every((cell) => currentPlayer.game.includes(cell))) {
-        currentPlayer.victories++;
-        console.log(`${currentPlayer.name} has won! 🥳`);
-        isPlaying = false;
+    let hasWon = false;
+    winningGames.forEach((winGame) => {
+      const isGameWon = winGame.every((cell) =>
+        currentPlayer.game.includes(cell)
+      );
+      if (isGameWon) {
+        hasWon = true;
       }
     });
-    if (selectedCells.length === cellsIDs.length) {
+    if (hasWon) {
+      currentPlayer.victories++;
+      console.log(`${currentPlayer.name} has won! 🥳`);
+      isPlaying = false;
+      btnNewGame.classList.toggle("hidden");
+    }
+    if (!hasWon && selectedCells.length === cellsIDs.length) {
       console.log(`It's a draw 😢`);
       isPlaying = false;
+      btnNewGame.classList.toggle("hidden");
     }
     if (currentPlayer === player0) {
       currentPlayer = player1;
@@ -73,8 +82,12 @@ function newGame() {
     cell.textContent = "";
     cell.style.backgroundColor = "#fff";
   });
+  selectedCells = [];
+  player0.game = [];
+  player1.game = [];
   currentPlayer = player0;
   isPlaying = true;
+  btnNewGame.classList.toggle("hidden");
 }
 
 btnNewGame.addEventListener("click", newGame);
