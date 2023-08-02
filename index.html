@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tris</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,11 +13,11 @@
     />
   </head>
   <body>
-    <button id="new-game" class="hidden">New game</button>
-    <div class="container-player container-player--0">
-      <div class="player-mark player-mark--0">😄</div>
-      <div class="player-name player-name--0">Anonymous</div>
-      <div class="player-wins player-wins--0">0</div>
+    <button id="new-game" class="btn hidden">New game</button>
+    <div class="container-player container-player--1">
+      <div class="player-mark player-mark--1">👾</div>
+      <div class="player-name player-name--1">Maria Stuarda</div>
+      <div class="player-wins player-wins--1">0</div>
     </div>
     <table id="game">
       <tbody>
@@ -38,41 +38,55 @@
         </tr>
       </tbody>
     </table>
-    <div class="container-player container-player--1">
-      <div class="player-mark player-mark--1">😄</div>
-      <div class="player-name player-name--1">Anonymous</div>
-      <div class="player-wins player-wins--1">0</div>
+    <div class="container-player container-player--0">
+      <div class="player-mark player-mark--0">👽</div>
+      <div class="player-name player-name--0">Elisabetta i</div>
+      <div class="player-wins player-wins--0">0</div>
     </div>
     <div class="overlay">
       <div class="intro">
         <h1 class="intro__title">Tic-Tac-Toe</h1>
         <div class="intro__buttons">
-          <button id="1-player">1 player</button>
-          <button id="2-player">2 players</button>
+          <button id="btn1player" class="btn">1 player 🧍</button>
+          <button id="btn2players" class="btn">2 players 🧍🧍</button>
         </div>
-        <div class="intro__form">
+        <div class="intro__form hidden">
           <form>
             <fieldset id="form-p0">
-              <input type="text" name="name" id="name" />
-              <input type="color" name="color" id="color" />
-              <input type="radio" name="mark" id="mark1" />
-              <label for="mark">😀</label>
-              <input type="radio" name="mark" id="mark2" />
-              <label for="mark">🙂</label>
-              <input type="radio" name="mark" id="mark3" />
-              <label for="mark">😇</label>
+              <input id="inputColorP0" type="color" name="color" id="color" />
+              <input
+                id="inputNameP0"
+                type="text"
+                name="name"
+                placeholder="Player 1"
+              />
+              <fieldset id="inputMarkP0" class="mark">
+                <input type="radio" name="mark0" id="mark1" value="🐶" />
+                <label for="mark">🐶</label>
+                <input type="radio" name="mark0" id="mark2" value="😼" />
+                <label for="mark">😼</label>
+                <input type="radio" name="mark0" id="mark3" value="🐴" />
+                <label for="mark">🐴</label>
+              </fieldset>
             </fieldset>
             <fieldset id="form-p1">
-              <input type="text" name="name" id="name" />
-              <input type="color" name="color" id="color" />
-              <input type="radio" name="mark" id="mark1" />
-              <label for="mark">😀</label>
-              <input type="radio" name="mark" id="mark2" />
-              <label for="mark">🙂</label>
-              <input type="radio" name="mark" id="mark3" />
-              <label for="mark">😇</label>
+              <input id="inputColorP1" type="color" name="color" id="color" />
+              <input
+                id="inputNameP1"
+                type="text"
+                name="name"
+                placeholder="Player 2"
+              />
+              <fieldset id="inputMarkP1" class="mark">
+                <input type="radio" name="mark1" id="mark1" value="🐍" />
+                <label for="mark">🐍</label>
+                <input type="radio" name="mark1" id="mark2" value="🐦" />
+                <label for="mark">🐦</label>
+                <input type="radio" name="mark1" id="mark3" value="🐿️" />
+                <label for="mark">🐿️</label>
+              </fieldset>
             </fieldset>
-            <button id="start">Start</button>
+            <button id="btnStart" class="btn">Start</button>
           </form>
         </div>
       </div>

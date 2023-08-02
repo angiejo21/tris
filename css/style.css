@@ -1,0 +1,164 @@
+/* -----------Game----------- */
+table {
+  width: 60vw;
+  max-width: 512px;
+  aspect-ratio: 1;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 3px; }
+
+td {
+  box-shadow: 0 0 1px #ddd;
+  width: 33.3333333333333%;
+  height: 33.3333333333333%;
+  text-align: center;
+  font-size: 5rem; }
+  td:hover, td:active {
+    box-shadow: 0 0 20px #33333311; }
+
+/* -----------Details----------- */
+.container-player {
+  background-color: #aaaaaa33;
+  width: 60vw;
+  max-width: 512px;
+  padding: 1rem 1.5rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  margin: 1rem 0; }
+  .container-player--1 {
+    transform: rotate(180deg); }
+
+.player-name {
+  text-transform: uppercase;
+  margin-right: auto;
+  font-weight: 300; }
+
+.player-wins {
+  font-size: 3.5rem; }
+
+.player-mark {
+  margin-right: 1rem; }
+
+/* -----------Intro----------- */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.intro {
+  min-width: 80vw;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #ffffffaa;
+  border-radius: 3px;
+  box-shadow: 1rem 1rem 2rem #00000033; }
+  .intro__title {
+    text-transform: uppercase;
+    font-size: 5rem;
+    margin-bottom: 3rem; }
+  .intro__form form {
+    margin-top: 4rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, min-content);
+    column-gap: 1rem;
+    row-gap: 4rem; }
+    .intro__form form fieldset {
+      width: 100%;
+      grid-row: 1 / 2;
+      border: none;
+      padding: 0.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, min-content);
+      column-gap: 0.5rem;
+      row-gap: 2rem; }
+    .intro__form form button {
+      grid-row: 2 / 3;
+      grid-column: 1 / -1;
+      justify-content: center;
+      align-content: center; }
+    .intro__form form label {
+      font-size: 2rem; }
+    .intro__form form .mark {
+      grid-row: 2 / 3;
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center; }
+
+input[type="text"] {
+  border: none;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+  background-color: #ddd;
+  font-family: inherit;
+  grid-row: 1 / 2;
+  grid-column: 2 / -1; }
+
+input[type="color"] {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  border: none;
+  width: 5rem;
+  height: 5rem;
+  clip-path: circle(40%); }
+
+input[type="radio"] {
+  background-color: #ddd;
+  border: none;
+  height: 1.5rem; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-family: "Poppins", sans-serif; }
+
+body {
+  height: 100vh;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.btn,
+.btn {
+  font-family: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 100px;
+  padding: 1rem 3rem;
+  margin: 0 1rem;
+  background-image: linear-gradient(to bottom right, #e9ff70, #ff9770);
+  transition: all 0.2s; }
+  .btn:hover,
+  .btn:hover {
+    transform: translateY(-2px); }
+  .btn:active,
+  .btn:active {
+    box-shadow: 2px 2px 10px #00000033;
+    transform: translateY(1px);
+    background-color: #ef476f; }
+
+.hidden {
+  display: none; }
