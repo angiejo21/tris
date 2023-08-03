@@ -1,36 +1,37 @@
 /* -----------Game----------- */
 table {
-  width: 60vw;
-  max-width: 512px;
+  width: 100%;
   aspect-ratio: 1;
-  background-color: #fff;
+  background-color: $white;
   padding: 10px;
   border-radius: 3px;
 }
 td {
-  box-shadow: 0 0 1px #ddd;
+  box-shadow: 0 0 1px $grey-md;
   width: 33.3333333333333%;
   height: 33.3333333333333%;
   text-align: center;
   font-size: 5rem;
   &:hover,
   &:active {
-    box-shadow: 0 0 20px #33333311;
+    box-shadow: 0 0 0.5rem $black-tr;
   }
 }
 /* -----------Details----------- */
 .container-player {
-  background-color: #aaaaaa33;
-  width: 60vw;
-  max-width: 512px;
+  background-color: $black-tr;
+  width: 100%;
   padding: 1rem 1.5rem;
   border-radius: 3px;
   display: flex;
   align-items: center;
   font-size: 3rem;
   margin: 1rem 0;
-  &--1 {
-    transform: rotate(180deg);
+
+  @media screen and (orientation: portrait) {
+    &--1 {
+      transform: rotate(180deg);
+    }
   }
 }
 .player-name {
@@ -39,7 +40,13 @@ td {
   font-weight: 300;
 }
 .player-wins {
+  display: flex;
+  align-items: center;
   font-size: 3.5rem;
+  span {
+    font-size: 3rem;
+    margin-right: 1rem;
+  }
 }
 .player-mark {
   margin-right: 1rem;

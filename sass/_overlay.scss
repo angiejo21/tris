@@ -10,55 +10,89 @@
   justify-content: center;
   align-items: center;
 }
-
+.message {
+  min-width: 80vh;
+  max-width: 100%;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $white-tr;
+  border-radius: 3px;
+  box-shadow: 1rem 1rem 2rem $black-tr;
+  text-transform: uppercase;
+  h2 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+  }
+  h3 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+}
 .intro {
-  min-width: 80vw;
-  padding: 3rem 2rem;
+  min-width: 50vh;
+  padding: 4rem 3rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #ffffffaa;
+  background-color: $white-tr;
   border-radius: 3px;
-  box-shadow: 1rem 1rem 2rem #00000033;
+  box-shadow: 1rem 1rem 2rem $black-tr;
+  &__buttons {
+    margin-top: 3rem;
+  }
   &__title {
     text-transform: uppercase;
     font-size: 5rem;
-    margin-bottom: 3rem;
   }
   &__form form {
     margin-top: 4rem;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, max-content);
     grid-template-rows: repeat(2, min-content);
-    column-gap: 1rem;
-    row-gap: 4rem;
-    & fieldset {
+    row-gap: 3rem;
+
+    fieldset {
       width: 100%;
       grid-row: 1 / 2;
       border: none;
       padding: 0.5rem;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: min-content repeat(3, 1fr);
       grid-template-rows: repeat(2, min-content);
       column-gap: 0.5rem;
       row-gap: 2rem;
     }
-    & button {
+    button {
       grid-row: 2 / 3;
       grid-column: 1 / -1;
+      justify-self: center;
+      align-self: center;
+      background-color: $magenta;
+    }
+    label {
+      display: flex;
+      align-items: center;
       justify-content: center;
-      align-content: center;
-    }
-    & label {
       font-size: 2rem;
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
     }
-    & .mark {
+    .mark {
       grid-row: 2 / 3;
       grid-column: 1 / -1;
       display: flex;
-      justify-content: space-evenly;
       align-items: center;
+      justify-content: space-evenly;
+    }
+    @media screen and (max-width: 37.5em) {
+      width: 80vh;
     }
   }
 }
@@ -66,10 +100,13 @@ input[type="text"] {
   border: none;
   border-radius: 100px;
   padding: 1rem 2rem;
-  background-color: #ddd;
+  background-color: $grey-md;
   font-family: inherit;
   grid-row: 1 / 2;
   grid-column: 2 / -1;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
 }
 input[type="color"] {
   grid-row: 1 / 2;
@@ -77,10 +114,11 @@ input[type="color"] {
   border: none;
   width: 5rem;
   height: 5rem;
-  clip-path: circle(40%);
+  clip-path: circle(39%);
 }
 input[type="radio"] {
-  background-color: #ddd;
-  border: none;
-  height: 1.5rem;
+  display: none;
+  &:checked + label {
+    background-color: $grey-md;
+  }
 }
