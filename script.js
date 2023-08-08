@@ -28,6 +28,7 @@ let firstPlayer = players[0];
 let currentPlayer;
 let selectedCells = [];
 let isPlaying = true;
+let hasWon;
 
 const player0 = {
   name: randomPlayer(),
@@ -44,7 +45,7 @@ const player1 = {
   color: "#3a86ff",
 };
 const player2 = {
-  name: "Death eater",
+  name: "Mangiamorte",
   game: [],
   victories: 0,
   mark: "💀",
@@ -78,12 +79,54 @@ function init() {
 init();
 
 function randomSelection() {
-  const freeCells = cells.filter((sCell) => !selectedCells.includes(sCell));
-  console.log(freeCells);
-  const index = Math.floor(Math.random() * freeCells.length);
-  const chosenCell = document.getElementById(freeCells[index]);
-  currentPlayer.game.push(freeCells[index]);
-  chosenCell.textContent = currentPlayer.mark;
+  let chosenCell;
+  let index;
+  const game = currentPlayer.game;
+  let winningCells;
+
+  if (!game.includes(game[0])) {
+    winningCells = cellsIDs.filter((sCell) => !selectedCells.includes(sCell));
+    index = Math.floor(Math.random() * winningCells.length);
+    chosenCell = winningCells[index];
+  } else if (game.includes(game[0])) {
+    winningCells = [
+      ...new Set(winningGames.filter((g) => g.includes(game[0])).flat()),
+    ];
+    console.log(winningCells);
+    const chances1 = winningCells.filter(
+      (sCell) => !selectedCells.includes(sCell)
+    );
+    console.log(chances1);
+    index = Math.floor(Math.random() * chances1.length);
+    chosenCell = chances1[index];
+  } else if (game.includes(game[1])) {
+    winningCells = [
+      ...new Set(
+        winningGames
+          .filter((g) => g.includes(game[0]) && g.includes(game[1]))
+          .flat()
+      ),
+    ];
+    console.log(winningCells);
+    const chances2 = winningCells.filter(
+      (sCell) => !selectedCells.includes(sCell)
+    );
+    console.log(chances2);
+    index = Math.floor(Math.random() * chances2.length);
+    chosenCell = chances2[index];
+  }
+
+  currentPlayer.game.push(chosenCell);
+  selectedCells.push(chosenCell);
+  const elementCell = document.getElementById(chosenCell);
+  elementCell.textContent = currentPlayer.mark;
+  elementCell.style.backgroundColor = currentPlayer.color;
+  checkWin();
+  if (currentPlayer === players[0]) {
+    currentPlayer = players[1];
+  } else {
+    currentPlayer = players[0];
+  }
 }
 
 function randomPlayer() {
@@ -144,43 +187,50 @@ function newGame() {
   overlay.style.opacity = 0;
   message.classList.add("hidden");
   overlay.classList.add("hidden");
-}
-/////////////////EVENTS/////////////////
-game.addEventListener("click", (e) => {
-  const target = e.target.closest("td");
-  if (isPlaying && !selectedCells.includes(target.id)) {
-    target.textContent = currentPlayer.mark;
-    target.style.backgroundColor = currentPlayer.color;
-    currentPlayer.game.push(target.id);
-    selectedCells.push(target.id);
-    let hasWon = false;
-    winningGames.forEach((winGame) => {
-      const isGameWon = winGame.every((cell) =>
-        currentPlayer.game.includes(cell)
-      );
-      if (isGameWon) {
-        hasWon = true;
-      }
-    });
-    if (hasWon) {
-      const index = players.indexOf(currentPlayer);
-      document.querySelector(
-        `.player-wins--${index}`
-      ).innerHTML = `<span>🏆</span> ${++currentPlayer.victories}`;
-      renderMessage("victory", currentPlayer);
-      isPlaying = false;
-    }
-    if (!hasWon && selectedCells.length === cellsIDs.length) {
-      renderMessage("draw", currentPlayer);
-      isPlaying = false;
-    }
-    if (currentPlayer === player0) {
-      currentPlayer = players[1];
-    } else {
-      currentPlayer = players[0];
-    }
+  if (currentPlayer === player2) {
+    setTimeout(randomSelection, 500);
   }
-});
+}
+function checkWin() {
+  hasWon = false;
+  winningGames.forEach((winGame) => {
+    const isGameWon = winGame.every((cell) =>
+      currentPlayer.game.includes(cell)
+    );
+    if (isGameWon) {
+      hasWon = true;
+    }
+  });
+  if (hasWon) {
+    const index = players.indexOf(currentPlayer);
+    document.querySelector(
+      `.player-wins--${index}`
+    ).innerHTML = `<span>🏆</span> ${++currentPlayer.victories}`;
+    renderMessage("victory", currentPlayer);
+    isPlaying = false;
+  }
+  if (!hasWon && selectedCells.length === cellsIDs.length) {
+    renderMessage("draw", currentPlayer);
+    isPlaying = false;
+  }
+}
+
+function renderGame(arrPlayers) {
+  document.querySelector(".player-mark--0").innerHTML = arrPlayers[0].mark;
+  document.querySelector(".player-name--0").innerHTML = arrPlayers[0].name;
+  document.querySelector(".player-wins--0").innerHTML =
+    "🏆" + arrPlayers[0].victories;
+  document.querySelector(".container-player--0").style.backgroundColor =
+    arrPlayers[0].color + "aa";
+  document.querySelector(".player-mark--1").innerHTML = arrPlayers[1].mark;
+  document.querySelector(".player-name--1").innerHTML = arrPlayers[1].name;
+  document.querySelector(".player-wins--1").innerHTML =
+    "🏆" + arrPlayers[1].victories;
+  document.querySelector(".container-player--1").style.backgroundColor =
+    arrPlayers[1].color + "aa";
+  overlay.style.opacity = 0;
+  overlay.classList.add("hidden");
+}
 
 function renderMessage(occurance, player) {
   const text = document.querySelector(".message__text");
@@ -199,6 +249,25 @@ function renderMessage(occurance, player) {
   message.classList.remove("hidden");
   overlay.classList.remove("hidden");
 }
+/////////////////EVENTS/////////////////
+game.addEventListener("click", (e) => {
+  const target = e.target.closest("td");
+  if (isPlaying && !selectedCells.includes(target.id)) {
+    target.textContent = currentPlayer.mark;
+    target.style.backgroundColor = currentPlayer.color;
+    currentPlayer.game.push(target.id);
+    selectedCells.push(target.id);
+    checkWin();
+    if (currentPlayer === players[0]) {
+      currentPlayer = players[1];
+    } else {
+      currentPlayer = players[0];
+    }
+    if (currentPlayer === player2 && !hasWon) {
+      setTimeout(randomSelection, 500);
+    }
+  }
+});
 
 btnNewGame.addEventListener("click", newGame);
 
@@ -209,6 +278,7 @@ btn1player.addEventListener("click", (e) => {
   form.classList.remove("hidden");
   document.querySelector(".intro__buttons").classList.add("hidden");
 });
+
 btn2players.addEventListener("click", (e) => {
   e.preventDefault();
   players = [player0, player1];
@@ -231,20 +301,3 @@ btnStart.addEventListener("click", (e) => {
   renderGame(players);
   newGame();
 });
-
-function renderGame(arrPlayers) {
-  document.querySelector(".player-mark--0").innerHTML = arrPlayers[0].mark;
-  document.querySelector(".player-name--0").innerHTML = arrPlayers[0].name;
-  document.querySelector(".player-wins--0").innerHTML =
-    "🏆" + arrPlayers[0].victories;
-  document.querySelector(".container-player--0").style.backgroundColor =
-    arrPlayers[0].color + "aa";
-  document.querySelector(".player-mark--1").innerHTML = arrPlayers[1].mark;
-  document.querySelector(".player-name--1").innerHTML = arrPlayers[1].name;
-  document.querySelector(".player-wins--1").innerHTML =
-    "🏆" + arrPlayers[1].victories;
-  document.querySelector(".container-player--1").style.backgroundColor =
-    arrPlayers[1].color + "aa";
-  overlay.style.opacity = 0;
-  overlay.classList.add("hidden");
-}

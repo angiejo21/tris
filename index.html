@@ -5,12 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>❌ TRIS 🔴</title>
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap"
       rel="stylesheet"
     />
+    <!-- Favico -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img//apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img//favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img//favicon-16x16.png"
+    />
+    <link rel="manifest" href="site.webmanifest" />
   </head>
   <body>
     <div class="container">
@@ -48,13 +68,16 @@
       <div class="intro">
         <h1 class="intro__title">❌ Tris 🔴</h1>
         <div class="intro__buttons">
-          <button id="btn1player" class="btn">1 player<span>🧍</span></button>
+          <button id="btn1player" class="btn">
+            1 giocatore<span>🧍</span>
+          </button>
           <button id="btn2players" class="btn">
-            2 players<span>🧍🧍</span>
+            2 giocatori<span>🧍🧍</span>
           </button>
         </div>
         <div class="intro__form hidden">
           <form>
+            <p class="intro__description">Scegli un colore ed una emoji 😎</p>
             <fieldset id="form-p0">
               <input
                 id="inputColorP0"
@@ -66,12 +89,18 @@
                 id="inputNameP0"
                 type="text"
                 name="name"
-                placeholder="Player 1"
+                placeholder="Giocatore 1"
               />
               <fieldset id="inputMarkP0" class="mark">
                 <input type="radio" name="mark0" id="mark01" value="🐶" />
                 <label for="mark01">🐶</label>
-                <input type="radio" name="mark0" id="mark02" value="😼" />
+                <input
+                  type="radio"
+                  name="mark0"
+                  id="mark02"
+                  value="😼"
+                  checked
+                />
                 <label for="mark02">😼</label>
                 <input type="radio" name="mark0" id="mark03" value="🐴" />
                 <label for="mark03">🐴</label>
@@ -88,12 +117,18 @@
                 id="inputNameP1"
                 type="text"
                 name="name"
-                placeholder="Player 2"
+                placeholder="Giocatore 2"
               />
               <fieldset id="inputMarkP1" class="mark">
                 <input type="radio" name="mark1" id="mark11" value="🐍" />
                 <label for="mark11"> 🐍 </label>
-                <input type="radio" name="mark1" id="mark12" value="🐦" />
+                <input
+                  type="radio"
+                  name="mark1"
+                  id="mark12"
+                  value="🐦"
+                  checked
+                />
                 <label for="mark12"> 🐦 </label>
                 <input type="radio" name="mark1" id="mark13" value="🐿️" />
                 <label for="mark13"> 🐿️ </label>

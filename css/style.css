@@ -90,20 +90,25 @@ td {
   border-radius: 3px;
   box-shadow: 1rem 1rem 2rem #33333333; }
   .intro__buttons {
-    margin-top: 3rem; }
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center; }
   .intro__title {
     text-transform: uppercase;
     font-size: 5rem; }
+  .intro__description {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    font-size: 1.5rem; }
   .intro__form form {
     margin-top: 4rem;
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, max-content);
-    grid-template-rows: repeat(2, min-content);
+    grid-template-rows: repeat(3, min-content);
     row-gap: 3rem; }
     .intro__form form fieldset {
       width: 100%;
-      grid-row: 1 / 2;
+      grid-row: 2 / 3;
       border: none;
       padding: 0.5rem;
       display: grid;
@@ -112,7 +117,7 @@ td {
       column-gap: 0.5rem;
       row-gap: 2rem; }
     .intro__form form button {
-      grid-row: 2 / 3;
+      grid-row: 3 / 4;
       grid-column: 1 / -1;
       justify-self: center;
       align-self: center;
@@ -131,9 +136,28 @@ td {
       display: flex;
       align-items: center;
       justify-content: space-evenly; }
-    @media screen and (max-width: 37.5em) {
-      .intro__form form {
-        width: 80vh; } }
+
+@media screen and (max-width: 37.5em) {
+  .intro {
+    padding: 4rem 1rem; }
+    .intro__buttons {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+    .intro__form form {
+      grid-template-columns: max-content;
+      grid-template-rows: repeat(4, min-content);
+      justify-content: center;
+      align-content: center; }
+      .intro__form form button {
+        grid-row: 4 / 5; }
+    .intro #form-p0 {
+      grid-row: 2 / 3; }
+    .intro #form-p1 {
+      grid-row: 3 / 4; }
+  .intro,
+  .message {
+    width: 100%; } }
 
 input[type="text"] {
   border: none;
@@ -191,6 +215,9 @@ body {
   @media screen and (max-width: 43.75em) {
     .container {
       width: 80vw; } }
+  @media screen and (max-width: 37.5em) {
+    .container {
+      width: 90vw; } }
 
 .btn,
 .btn {
@@ -202,7 +229,7 @@ body {
   border: none;
   border-radius: 100px;
   padding: 1.2rem 3rem;
-  margin: 0 1rem;
+  margin: 1rem;
   background-color: #ddd;
   transition: all 0.2s; }
   .btn:hover,

@@ -1,7 +1,7 @@
 {
-  "name": "tic-tac-toe",
+  "name": "tris",
   "version": "1.0.0",
-  "description": "tic-tac-toe game",
+  "description": "tris is a tic-tac-toe game",
   "main": "script.js",
   "scripts": {
     "watch:sass": "node-sass sass/main.scss css/style.css -w",

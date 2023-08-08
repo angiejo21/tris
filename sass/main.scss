@@ -44,6 +44,9 @@ body {
   @media screen and (max-width: 43.75em) {
     width: 80vw;
   }
+  @media screen and (max-width: 37.5em) {
+    width: 90vw;
+  }
 }
 .btn,
 .btn {
@@ -55,7 +58,7 @@ body {
   border: none;
   border-radius: 100px;
   padding: 1.2rem 3rem;
-  margin: 0 1rem;
+  margin: 1rem;
   background-color: $grey-md;
   transition: all 0.2s;
   &:hover {

@@ -44,22 +44,28 @@
   box-shadow: 1rem 1rem 2rem $black-tr;
   &__buttons {
     margin-top: 3rem;
+    display: flex;
+    justify-content: center;
   }
   &__title {
     text-transform: uppercase;
     font-size: 5rem;
   }
+  &__description {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    font-size: 1.5rem;
+  }
   &__form form {
     margin-top: 4rem;
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, max-content);
-    grid-template-rows: repeat(2, min-content);
+    grid-template-rows: repeat(3, min-content);
     row-gap: 3rem;
 
     fieldset {
       width: 100%;
-      grid-row: 1 / 2;
+      grid-row: 2 / 3;
       border: none;
       padding: 0.5rem;
       display: grid;
@@ -69,7 +75,7 @@
       row-gap: 2rem;
     }
     button {
-      grid-row: 2 / 3;
+      grid-row: 3 / 4;
       grid-column: 1 / -1;
       justify-self: center;
       align-self: center;
@@ -91,9 +97,36 @@
       align-items: center;
       justify-content: space-evenly;
     }
-    @media screen and (max-width: 37.5em) {
-      width: 80vh;
+  }
+}
+
+@media screen and (max-width: 37.5em) {
+  .intro {
+    padding: 4rem 1rem;
+    &__buttons {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
+    &__form form {
+      grid-template-columns: max-content;
+      grid-template-rows: repeat(4, min-content);
+      justify-content: center;
+      align-content: center;
+      button {
+        grid-row: 4 / 5;
+      }
+    }
+    #form-p0 {
+      grid-row: 2 / 3;
+    }
+    #form-p1 {
+      grid-row: 3 / 4;
+    }
+  }
+  .intro,
+  .message {
+    width: 100%;
   }
 }
 input[type="text"] {
